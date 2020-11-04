@@ -10,7 +10,7 @@ public class FindAllAction implements UserAction {
 
     @Override
     public String name() {
-       return "Show";
+        return "Show";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class FindAllAction implements UserAction {
         out.println("=== Show all items ===");
         Item[] items = tracker.findAll();
         for (Item item : items) {
-            System.out.println(item);
+            out.println(item);
         }
         return true;
     }

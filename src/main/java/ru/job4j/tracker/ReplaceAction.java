@@ -21,9 +21,9 @@ public class ReplaceAction implements UserAction {
         Item item = new Item();
         item.setName(name);
         if (tracker.replace(id, item)) {
-            System.out.println("Заявка заменена");
+            out.println("Заявка заменена");
         } else {
-            System.out.println("Заявка не заменена");
+            out.println("Заявка не заменена");
         }
         return true;
     }
