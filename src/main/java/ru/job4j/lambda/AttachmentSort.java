@@ -5,7 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Данный класс реализует сортировку объектов Attachment по полю size и полю name используя анонимные классы
+ * Данный класс реализует сортировку объектов Attachment
+ * по полю size и полю name используя анонимные классы
  *
  * @author Vasiliy Novopashin
  * @version 1.0
