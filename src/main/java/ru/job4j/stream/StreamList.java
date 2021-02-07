@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
  */
 public class StreamList {
 
-    List<Integer> list = List.of(1, 2, -2, 0, -10, 8);
-    List<Integer> positiveNumbers = list.stream()
+   private List<Integer> list = List.of(1, 2, -2, 0, -10, 8);
+   private List<Integer> positiveNumbers = list.stream()
             .filter(n -> n >= 0)
             .collect(Collectors.toList());
 }
