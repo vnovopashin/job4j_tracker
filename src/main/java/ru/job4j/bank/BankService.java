@@ -35,9 +35,11 @@ public class BankService {
      */
     public void addAccount(String passport, Account account) {
         Optional<User> user = findByPassport(passport);
-        List<Account> list = users.get(user.get());
-        if (!list.contains(account)) {
-            list.add(account);
+        if (user.isPresent()) {
+            List<Account> list = users.get(user.get());
+            if (!list.contains(account)) {
+                list.add(account);
+            }
         }
     }
 
@@ -88,14 +90,18 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = true;
-        Account srcAccount = findByRequisite(srcPassport, srcRequisite).get();
-        Account destAccount = findByRequisite(destPassport, destRequisite).get();
 
-        if (srcAccount.getBalance() < amount) {
-            rsl = false;
+        Optional<Account> srcAccount = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
+
+        srcAccount.ifPresent(account -> account.setBalance(account.getBalance() - amount));
+        destAccount.ifPresent(account -> account.setBalance(account.getBalance() + amount));
+
+        if (srcAccount.isPresent()) {
+            if (srcAccount.get().getBalance() < amount) {
+                rsl = false;
+            }
         }
-        srcAccount.setBalance(srcAccount.getBalance() - amount);
-        destAccount.setBalance(destAccount.getBalance() + amount);
         return rsl;
     }
 }
